@@ -5,9 +5,7 @@ import { Transaction } from '../types/Transaction.types';
 
 
 const Transactions = () => {
-
     const [transactions, setTransactions] = React.useState<Transaction[]>([]);
-
     function getKeys(data: Transaction[]) {
         if (data.length > 0) {
             return Object.keys(data[0]);
@@ -17,9 +15,9 @@ const Transactions = () => {
     }
     function convertTransDate(date: string) {
         const transactionDate = new Date(date)
-        return transactionDate.toLocaleTimeString('en-GB', { hour: "2-digit", minute: "2-digit" }) 
-        +' - ' 
-        + transactionDate.toLocaleDateString('en-GB');
+        return transactionDate.toLocaleTimeString('en-GB', { hour: "2-digit", minute: "2-digit" })
+            + ' - '
+            + transactionDate.toLocaleDateString('en-GB');
     }
 
     useEffect(() => {
@@ -27,8 +25,13 @@ const Transactions = () => {
             const response = await fetch('https://tip-transactions.vercel.app/api/transactions?page=1');
             if (response.status === 200) {
                 const data = await response.json();
+                if (!data.transactions) {
+                    console.log('Error fetching data', data);
+                    setTransactions([]);
+                    return;
+                }
                 const dataTransactions: Transaction[] = data.transactions;
-                const formattedDataTransactions = dataTransactions.map((transaction: any) => {
+                const formattedDataTransactions = dataTransactions.map((transaction: Transaction) => {
                     return {
                         id: transaction.id,
                         date: convertTransDate(transaction.date),
@@ -41,6 +44,7 @@ const Transactions = () => {
                 setTransactions(formattedDataTransactions);
             } else {
                 console.log('Error fetching data', response.statusText);
+                setTransactions([]);
             }
         }
         fetchData()
