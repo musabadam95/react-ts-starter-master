@@ -1,0 +1,28 @@
+#table {
+    align-items: center;
+    
+}
+#table table{
+    width: 100%;
+    margin: 0 auto; /* Center the table */
+    border: 1px solid #ddd;
+}
+
+#table th, #table td {
+    padding: 8px;
+    align-items: center;
+    border: 1px solid #ddd;
+
+}
+
+#table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    align-items: center;
+}
+
+#table tr {
+    border: 1px solid #ddd;
+    text-align: left;
+    
+}
