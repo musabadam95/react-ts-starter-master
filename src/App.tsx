@@ -1,8 +1,8 @@
-import Transactions from "./transactions/transaction";
+import GreenStatus from "./components/GreenEnergyPercentage/GreenEnergyPercentage";
 function App() {
   return (
     <div id="template-text">
-      <Transactions/>
+      <GreenStatus/>
     </div>
   );
 }
