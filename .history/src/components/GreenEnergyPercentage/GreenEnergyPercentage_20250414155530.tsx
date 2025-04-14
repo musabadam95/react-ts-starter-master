@@ -82,7 +82,7 @@ const GreenEnergyPercentage = () => {
     const overallMessage = useMemo(() => {
         if (percentageClass == "low") return "Let's strive to increase our use of clean energy for a sustainable future!";
         if (percentageClass == "medium") return "Not too bad but lets push for more clean energy"
-        return "Doing great job lets keep going !!"
+        return "Doing great job!!"
     }, [percentageClass])
     if (overallGreenPercentage) {
         return (
